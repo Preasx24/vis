@@ -384,7 +384,7 @@
 
     let token = null, player = null, gistInfo = null, playerData = null;
     let flippedCards = [], lockBoard = false, matchesFound = 0;
-    let maxFlips = 40, remainingFlips = 40;
+    let maxFlips = 30, remainingFlips = 30;
 
     const boardDiv = document.getElementById("gameBoard");
     const statusDiv = document.getElementById("status");
@@ -428,10 +428,10 @@
       // Reset flip limits if it's a new day
       const today = new Date().toDateString();
       if (playerData.gameData.memory.lastPlayed !== today) {
-        maxFlips = 40;
+        maxFlips = 30;
         playerData.gameData.memory.maxFlips = maxFlips;
       } else {
-        maxFlips = playerData.gameData.memory.maxFlips || 40;
+        maxFlips = playerData.gameData.memory.maxFlips || 30;
       }
 
       // Lock username choice
@@ -538,11 +538,11 @@
       
       if (c1.dataset.value === c2.dataset.value) {
         // MATCH FOUND - Reward with 4 extra flips
-        remainingFlips += 4;
-        maxFlips += 4;
+        remainingFlips += 2;
+        maxFlips += 2;
         updateFlipDisplay();
         
-        statusDiv.textContent = "✅ Match! +4 flips!";
+        statusDiv.textContent = "✅ Match! +2 flips!";
         statusDiv.className = "status-reward";
         
         // Mark cards as matched
@@ -649,7 +649,7 @@
             memory: {
               score: 0,
               dailyGames: { date: new Date().toDateString(), count: 0 },
-              maxFlips: 40
+              maxFlips: 30
             },
             totalScore: 0
           },
